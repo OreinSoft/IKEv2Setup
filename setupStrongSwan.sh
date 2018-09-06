@@ -131,7 +131,7 @@ chmod 600 server-root-key.pem
 
 ipsec pki --self --ca --lifetime 3650 \
 --in server-root-key.pem \
---type rsa --dn "C=US, O=VPN Server, CN=VPN Server Root CA" \
+--type rsa --dn "C=US, O=Orein Software Inc, CN=OreinSoft Root CA" \
 --outform pem > server-root-ca.pem
 
 ipsec pki --gen --type rsa --size 4096 --outform pem > vpn-server-key.pem
@@ -140,7 +140,7 @@ ipsec pki --pub --in vpn-server-key.pem \
 --type rsa | ipsec pki --issue --lifetime 1825 \
 --cacert server-root-ca.pem \
 --cakey server-root-key.pem \
---dn "C=US, O=VPN Server, CN=${server_ip}" \
+--dn "C=US, O=Orein Software Inc, CN=${server_ip}" \
 --san "${server_ip}" \
 --flag serverAuth --flag ikeIntermediate \
 --outform pem > vpn-server-cert.pem
@@ -191,7 +191,7 @@ conn ikev2-vpn
   right=%any
   rightid=%any
   rightauth=eap-mschapv2
-  rightsourceip=10.10.10.0/24
+  rightsourceip=10.1.0.0/16
   rightdns=8.8.8.8,1.1.1.1
   rightsendcert=never
 
