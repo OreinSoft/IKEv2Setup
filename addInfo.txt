@@ -1,0 +1,25 @@
+# Check socks5 proxy
+# curl -v -x socks5://userName:userPassword@ip:port http://www.google.com/
+
+# Check http proxy
+# curl -v -x http://userName:userPassword@ip:port http://www.google.com/
+
+
+# For add admin user
+# useradd -r -g root -G sudo -s /bin/bash -p $(openssl passwd -1 user_password) user_name
+
+# For enable sudo without password add this line to end of file /etc/sudoers
+# user_name    ALL=(ALL) NOPASSWD:ALL
+
+# Disable ssh for root
+groupadd nossh
+cat /etc/group | grep nossh
+usermod -a -G nossh root
+groups root
+
+add 
+DenyGroups nossh
+to
+nano /etc/ssh/sshd_config
+
+/etc/init.d/ssh restart
