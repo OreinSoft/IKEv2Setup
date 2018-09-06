@@ -6,7 +6,7 @@ strongSwanIP=$3
 squidPort=$4
 danteInterface=$5
 dantePort=$6
-githubpath=https://github.com/lexxss/gateway/raw/master
+githubpath=https://github.com/OreinSoft/IKEv2Setyp/
 
 if    [ -z ${user_name} ] || [ -z ${user_pass} ]      || [ -z ${strongSwanIP} ]\
    || [ -z ${squidPort} ] || [ -z ${danteInterface} ] || [ -z ${dantePort} ]; then
