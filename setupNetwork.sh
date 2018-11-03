@@ -43,8 +43,8 @@ sudo iptables -A INPUT -p udp --dport  500 -j ACCEPT
 sudo iptables -A INPUT -p udp --dport 4500 -j ACCEPT
 sudo iptables -A FORWARD --match policy --pol ipsec --dir in  --proto esp -s 10.1.0.0/16 -j ACCEPT
 sudo iptables -A FORWARD --match policy --pol ipsec --dir out --proto esp -d 10.1.0.0/16 -j ACCEPT
-sudo iptables -t nat -A POSTROUTING -s 10.1.0.0/16 -o ens4 -m policy --pol ipsec --dir out -j ACCEPT
-sudo iptables -t nat -A POSTROUTING -s 10.1.0.0/16 -o ens4 -j MASQUERADE
-sudo iptables -t mangle -A FORWARD --match policy --pol ipsec --dir in -s 10.1.0.0/16 -o ens4 -p tcp -m tcp --tcp-flags SYN,RST SYN -m tcpmss --mss 1361:1536 -j TCPMSS --set-mss 1360
+sudo iptables -t nat -A POSTROUTING -s 10.1.0.0/16 -o ens2 -m policy --pol ipsec --dir out -j ACCEPT
+sudo iptables -t nat -A POSTROUTING -s 10.1.0.0/16 -o ens2 -j MASQUERADE
+sudo iptables -t mangle -A FORWARD --match policy --pol ipsec --dir in -s 10.1.0.0/16 -o ens2 -p tcp -m tcp --tcp-flags SYN,RST SYN -m tcpmss --mss 1361:1536 -j TCPMSS --set-mss 1360
 sudo iptables -A INPUT -j DROP
 sudo iptables -A FORWARD -j DROP
